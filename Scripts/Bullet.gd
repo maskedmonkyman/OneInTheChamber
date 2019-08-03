@@ -3,22 +3,53 @@ extends KinematicBody2D
 var hitsLeft = 1;
 var bulletSpeed = 750;
 
+var gun
+var gunOwner
+
 var velocity = Vector2()
 
-func start(pos, dir):
-    rotation = dir
-    position = pos
-    velocity = Vector2(bulletSpeed, 0).rotated(rotation)
+signal BulletHit
 
-func _physics_process(delta):
+func _ready():
+	pass
+
+func Start(pos, dir, gun):
+	
+	rotation = dir
+	position = pos
+	velocity = Vector2(bulletSpeed, 0).rotated(rotation)
+	
+	self.gun = gun
+	gunOwner = gun.gunOwner
+	#gives bullet affiliation
+	if (gunOwner.is_in_group("Player")):
+		add_to_group("Player")
+	else:
+		add_to_group("Enemy")
+	
+	
+	#------------masks layer of owner----------
+	var pl = gunOwner.get_collision_layer()
+	#print(pl)
+	self.set_collision_mask_bit(pl, true)
+	#print(self.get_collision_mask_bit(pl))
+
+func _physics_process(delta): #---------------------------------------------
+	
 	var collision = move_and_collide(velocity * delta)
-	if(collision != null and collision.collider_shape.get_parent().name != "PlayerBody"):
-		if collision.collider.has_method("hit"):
-			collision.collider.hit()
-
-
-func _on_BulletCol_body_entered():
-	hitsLeft -= 1;
-	if(hitsLeft == 0):
-		print("hit");
-		queue_free();
+	
+	if(collision != null):
+		var col = collision.collider
+		
+		if col.is_in_group("Actor"):
+			self.connect("BulletHit", col, "OnBulletHit")
+			
+		var dealDamage = true
+		if (col.is_in_group(get_groups()[0])):
+			dealDamage = false
+			print (dealDamage)
+		emit_signal("BulletHit", dealDamage) #add any other metadata here
+		
+		hitsLeft -= 1;
+		if(hitsLeft == 0):
+			queue_free();

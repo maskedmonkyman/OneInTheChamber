@@ -6,23 +6,26 @@ var parent;
 
 var pistol = preload("res://Scenes/Pistol.tscn")
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	parent = get_parent()
+	
+	#-------------------------pistol test case
 	heldGun = pistol.instance();
 	self.add_child(heldGun);
-	heldGun.Equip()
+	#heldGun.position.x += 100
+	
+	heldGun.Equip(self)
 	#print(heldGun);
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	pass
 
 func _physics_process(delta):
 	# the directional vector the player will end up moving in
 	var moveVec = Vector2()
-		
+	
 	if Input.is_action_pressed("Player_Up"):
 		moveVec.y -= 1
 	if Input.is_action_pressed("Player_Down"):
@@ -31,6 +34,7 @@ func _physics_process(delta):
 		moveVec.x -= 1
 	if Input.is_action_pressed("Player_Right"):
 		moveVec.x += 1
+	
 	moveVec = moveVec.normalized()
 	move_and_slide(moveVec * moveSpeed * delta) 
 	
@@ -39,5 +43,7 @@ func _physics_process(delta):
 	
 	if(heldGun != null):
 		if Input.is_action_just_pressed("Player_Fire"):
-			heldGun.Fire(global_rotation);
+			heldGun.Fire(global_rotation)
+			print (heldGun.get_parent())
+			heldGun.EnemyDrop()
 	#self.get_node("playerSprite").rotation = atan2(lookVec.y, lookVec.x)
