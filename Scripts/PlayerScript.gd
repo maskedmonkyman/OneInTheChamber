@@ -22,7 +22,7 @@ func _ready():
 	pass
 
 func DropGun():
-	heldGun.playerDrop();
+	heldGun.PlayerDrop();
 	heldGun = null;
 	parent.gunsOnLevel -= 1;
 	if(parent.gunsOnLevel == 0):
@@ -58,6 +58,5 @@ func _physics_process(delta):
 	if(heldGun != null):
 		if Input.is_action_just_pressed("Player_Fire"):
 			heldGun.Fire(global_rotation);
-			timer.set_wait_time(2)
-			timer.start()
+			DropGun();
 	#self.get_node("playerSprite").rotation = atan2(lookVec.y, lookVec.x)
