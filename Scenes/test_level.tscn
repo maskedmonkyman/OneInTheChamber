@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/test_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Assets/Sprites/test_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/PlayerBody.tscn" type="PackedScene" id=2]
 
 [node name="TileMap" type="TileMap"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Winchester.png-b2dc78df17089e667d5722a8564aa1bf.stex"
+path="res://.import/Winchester.png-0ce2007e1274f65ffd36f8b357df5e2b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Winchester.png"
-dest_files=[ "res://.import/Winchester.png-b2dc78df17089e667d5722a8564aa1bf.stex" ]
+source_file="res://Assets/Sprites/Weapons/Winchester.png"
+dest_files=[ "res://.import/Winchester.png-0ce2007e1274f65ffd36f8b357df5e2b.stex" ]
 
 [params]
 

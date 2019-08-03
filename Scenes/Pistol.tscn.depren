@@ -3,6 +3,7 @@
 [ext_resource path="res://Scripts/Pistol.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Weapons/Makarov.png" type="Texture" id=2]
 
+
 [sub_resource type="CircleShape2D" id=1]
 
 [node name="Pistol" type="KinematicBody2D"]
