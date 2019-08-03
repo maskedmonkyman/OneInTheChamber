@@ -10,7 +10,7 @@ func _ready():
 func start(pos, dir):
     rotation = dir
     position = pos
-    velocity = Vector2(speed, 0).rotated(rotation)
+    #velocity = Vector2(speed, 0).rotated(rotation)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
