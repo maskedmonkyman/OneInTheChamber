@@ -43,5 +43,7 @@ func _physics_process(delta):
 	
 	if(heldGun != null):
 		if Input.is_action_just_pressed("Player_Fire"):
-			heldGun.Fire(global_rotation);
+			heldGun.Fire(global_rotation)
+			print (heldGun.get_parent())
+			heldGun.EnemyDrop()
 	#self.get_node("playerSprite").rotation = atan2(lookVec.y, lookVec.x)

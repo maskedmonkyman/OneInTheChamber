@@ -3,7 +3,6 @@
 [ext_resource path="res://Assets/Sprites/test_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 
-
 [node name="TileMap" type="TileMap"]
 tile_set = ExtResource( 1 )
 format = 1

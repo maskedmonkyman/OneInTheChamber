@@ -14,4 +14,4 @@ func Fire(ang):
 	#print(bullet)
 	#print($Muzzle)
 	bullet.Start(muzzle.global_position, ang, self)
-	get_parent().parent.add_child(bullet)
+	get_tree().get_root().add_child(bullet)
