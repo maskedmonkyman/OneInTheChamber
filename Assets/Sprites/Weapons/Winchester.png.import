@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Bullet.png-01cfc6486bd6711d123faf51c40f38d2.stex"
+path="res://.import/Winchester.png-b2dc78df17089e667d5722a8564aa1bf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bullet.png"
-dest_files=[ "res://.import/Bullet.png-01cfc6486bd6711d123faf51c40f38d2.stex" ]
+source_file="res://Assets/Winchester.png"
+dest_files=[ "res://.import/Winchester.png-b2dc78df17089e667d5722a8564aa1bf.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
