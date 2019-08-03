@@ -14,5 +14,9 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func Fire(dir):
+func Fire(ang):
 	var bullet = bulletPrefab.instance()
+	#print(bullet)
+	print($Muzzle)
+	bullet.start($Muzzle.global_position, ang)
+	get_parent().parent.add_child(bullet)

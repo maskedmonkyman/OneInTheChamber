@@ -2,13 +2,17 @@ extends KinematicBody2D
 
 var moveSpeed = 10_000;
 var heldGun;
+var parent;
 
 var pistol = preload("res://Scenes/Pistol.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	parent = get_parent()
 	heldGun = pistol.instance();
-	print(heldGun);
+	self.add_child(heldGun);
+	heldGun.Equip()
+	#print(heldGun);
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,5 +39,5 @@ func _physics_process(delta):
 	
 	if(heldGun != null):
 		if Input.is_action_just_pressed("Player_Fire"):
-			heldGun.Fire(lookVec);
+			heldGun.Fire(global_rotation);
 	#self.get_node("playerSprite").rotation = atan2(lookVec.y, lookVec.x)

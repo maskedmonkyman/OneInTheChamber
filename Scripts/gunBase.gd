@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 var beenFired;
 
@@ -12,3 +12,7 @@ func _ready():
 
 func Drop():
 	pass
+
+func Equip():
+	var collider = self.get_node("CollisionShape2D")
+	collider.free()
