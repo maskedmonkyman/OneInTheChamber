@@ -32,6 +32,7 @@ func EnemyDrop():
 	var oldPos = global_position
 	assert(tileMap)
 	#print(tileMap.get_children())
+	gunOwner = null
 	get_parent().remove_child(self)
 	tileMap.add_child(self);
 	global_position = oldPos

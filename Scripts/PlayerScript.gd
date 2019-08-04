@@ -44,7 +44,7 @@ func PlayWalkAnim():
 		animPlayer.play("Walk")
 
 func DropGun():
-	heldGun.PlayerDrop();
+	heldGun.queue_free()
 	heldGun = null;
 	parent.gunsOnLevel -= 1;
 	print("Gun dropped. Guns on level:", parent.gunsOnLevel);
