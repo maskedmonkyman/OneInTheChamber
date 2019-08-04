@@ -3,11 +3,19 @@
 [ext_resource path="res://Scripts/PlayerScript.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/toonSheet.png" type="Texture" id=2]
 
+<<<<<<< HEAD
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.5833
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 22.3303
+=======
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 19.9417
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 20.1078
+>>>>>>> 34b82f94a3c412f50942a337a9237850f0c3214a
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
@@ -44,8 +52,8 @@ tracks/0/keys = {
 }
 
 [node name="PlayerBody" type="KinematicBody2D" groups=[
-"Player",
 "Actor",
+"Player",
 ]]
 collision_layer = 2
 collision_mask = 3
@@ -65,10 +73,13 @@ __meta__ = {
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="gunDetectionArea" type="Area2D" parent="."]
-collision_mask = 8
+[node name="Area2D" type="Area2D" parent="."]
 
+<<<<<<< HEAD
 [node name="CollisionShape2D" type="CollisionShape2D" parent="gunDetectionArea"]
+=======
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+>>>>>>> 34b82f94a3c412f50942a337a9237850f0c3214a
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
