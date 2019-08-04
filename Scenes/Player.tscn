@@ -3,11 +3,11 @@
 [ext_resource path="res://Scripts/PlayerScript.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/toonSheet.png" type="Texture" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 19.9417
+[sub_resource type="CircleShape2D" id=1]
+radius = 24.5833
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 20.1078
+[sub_resource type="CircleShape2D" id=2]
+radius = 22.3303
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
@@ -67,12 +67,9 @@ __meta__ = {
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gunDetectionArea"]
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 3 )
 anims/Walk = SubResource( 4 )
-
-[node name="Arm" type="Position2D" parent="."]
-position = Vector2( 13.7741, 12.7407 )
