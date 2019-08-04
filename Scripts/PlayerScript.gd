@@ -23,9 +23,9 @@ func _ready():
 	PlayIdleAnim()
 	facingRight = true;
 	#-------------------------pistol test case
-	heldGun = pistol.instance();
-	PickUpGun(heldGun)
-	heldGun.Equip(self)
+	#heldGun = pistol.instance();
+	#PickUpGun(heldGun)
+	#heldGun.Equip(self)
 	#parent.gunsOnLevel += 1;
 	#heldGun.position.x += 100
 	timer = $Timer
