@@ -5,3 +5,6 @@
 
 [node name="GunBase" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+scale = Vector2( 4, 4 )
