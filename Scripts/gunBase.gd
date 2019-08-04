@@ -6,6 +6,11 @@ var collider
 var heldByPlayer
 var gunType
 
+var sprite
+var muzzle
+
+var bulletPrefab = preload("res://Scenes/Bullet.tscn")
+
 func _ready():
 	beenFired = false;
 	#print("gunReady")
@@ -13,6 +18,14 @@ func _ready():
 	var tileMap = find_parent("TileMap")
 	tileMap.gunsOnLevel += 1;
 	print("Gun made. Guns on level:", tileMap.gunsOnLevel);
+	
+	sprite = $Sprite
+	muzzle = $Muzzle
+	
+	GunReady() #for each gun variant
+	
+func GunReady():
+	pass
 
 func EnemyDrop():
 	var tileMap = self.find_parent("TileMap");
@@ -41,3 +54,18 @@ func Equip(gunOwner):
 	print(collider)
 	if(collider != null):
 		collider.disabled = true;
+
+func Fire(ang):
+	pass
+
+func MFlash():
+	var mf = $mfSprite
+	$AnimationPlayer.play("MuzzleFlash")
+
+func SpawnBullet(ang, pos): #pos must be Vector2
+#-----------HERE
+	print("Gun think gunowner: ", gunOwner)
+	print("Gun thinks owner's col layer: ", gunOwner.get_collision_layer())
+	var bullet = bulletPrefab.instance()
+	bullet.Start(pos, ang, self)
+	get_tree().get_root().add_child(bullet)

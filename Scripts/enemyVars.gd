@@ -6,3 +6,5 @@ export var deAgroRadius = 300;
 export var chaseDist = 200;
 export var aimSpeed = 0.5;
 export var aimRange = 100;
+export var moveForce = 6000;
+export var debugLine : bool = false

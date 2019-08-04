@@ -1,22 +1,24 @@
 extends KinematicBody2D
 
+const Pistol = preload("res://Scenes/Pistol.tscn")
 #how close an agent can get to a path point in order to
 #consider it reached
 const distToPointTolerance = 2
 #how short an agent is alowed to travel to start
 #considering this path a failure
 const pathFailTolerance = 0.05
-const thrust = 5000
 const agroRepathDist = 50
 # how long an agent must wait to consider this path failed
 const pathFailTime = 0.2
-const debugLine : bool = true
 
 enum State {Patrol, Chase}
+enum AnimState {Walk, Idle}
 
+var animState
 var path = PoolVector2Array()
 var currentBehavior = State.Patrol
 var aimTarget : Vector2
+var heldGun
 
 onready var nav = find_parent("Navigation2D")
 onready var player = nav.find_node("PlayerBody")
@@ -24,14 +26,19 @@ onready var homePoint = get_parent().position
 onready var pathFailTimer = $"../pathFailTimer"
 onready var fireTimer = $"../fireTimer"
 onready var line = $"../Line2D"
+onready var animPlayer = $"AnimationPlayer"
+onready var gunPivot = $"gunPivot"
+onready var aimLine = $"aimLine"
 
-#this is aweful but no time to refactor
+#this is awful but no time to refactor
 onready var patrolRad = get_parent().patrolRad
 onready var patrolAgroRadius = get_parent().patrolAgroRadius
 onready var deAgroRadius = get_parent().deAgroRadius
 onready var chaseDist = get_parent().chaseDist
 onready var aimSpeed = get_parent().aimSpeed
 onready var aimRange = get_parent().aimRange
+onready var thrust = get_parent().moveForce
+onready var debugLine : bool = get_parent().debugLine
 
 func _ready():
 	assert(nav)
@@ -39,11 +46,17 @@ func _ready():
 	pathFailTimer.connect("timeout", self, "failPath")
 	fireTimer.wait_time = aimSpeed
 	fireTimer.connect("timeout", self, "fire")
+	giveGun()
+	PlayWalkAnim()
 	if debugLine:
 		line.global_position = Vector2(0,0)
-		line.points.append(Vector2(0,0))
-		line.points.append(Vector2(300,300))
 
+func giveGun(): #will be used to equip different guns to agents
+	#do some gun rng
+	heldGun = Pistol.instance()
+	heldGun.Equip(self)
+	gunPivot.add_child(heldGun)
+	
 func _process(delta):
 	update()
 
@@ -57,7 +70,7 @@ func _draw():
 		drawCircle(Vector2(0,0), patrolAgroRadius, Color(0,0,255))
 		#homePointPatrolRad
 		drawCircle(homePoint-global_position, patrolRad, Color(255,255,0))
-		
+	
 func drawCircle(center : Vector2, radius, color):
 	var segments = 32
 	var angChange = 360/segments
@@ -74,7 +87,7 @@ func drawCircle(center : Vector2, radius, color):
 
 func _physics_process(delta):
 	if !fireTimer.is_stopped():
-		#do turn gun and stuff
+		heldGun.look_at(aimTarget)
 		return
 	
 	if (currentBehavior == State.Patrol):
@@ -91,8 +104,9 @@ func _physics_process(delta):
 	if (currentBehavior == State.Chase):
 		#shoot
 		if (playerDist() < aimRange):
-			fireTimer.start()
 			aimTarget = player.global_position
+			setAimLine()
+			fireTimer.start()
 		#repath player
 		elif (playerDistToPoint(path[path.size()-1]) > agroRepathDist):
 			findPathToPoint(player.global_position)
@@ -107,9 +121,31 @@ func _physics_process(delta):
 		#find new path if we some how ran out of points
 		else:
 			findPathToPoint(player.global_position)
-			
+
+func setAimLine():
+	aimLine.global_position = Vector2(0,0)
+	aimLine.add_point(global_position)
+	aimLine.add_point(aimTarget)
+
+func PlayWalkAnim():
+	if(animState != AnimState.Walk):
+		animState = AnimState.Walk
+		animPlayer.play("Walk")
+
+func PlayIdleAnim():
+	if(animState != AnimState.Idle):
+		animState = AnimState.Idle
+		animPlayer.play("Idle")
+		
 func fire():
-	print("bang")
+	#heldGun.Fire(0)
+	aimLine.clear_points()
+	
+func OnBulletHit(someBoolVar : bool):
+	print("hit")
+	heldGun.enemyDrop()
+	get_parent().queue_free()
+	
 
 func followPath(delta):
 	var dir = path[0] - global_position; #get point direction
