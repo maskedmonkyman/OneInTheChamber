@@ -133,7 +133,7 @@ func _physics_process(delta):
 	#------------------------------------death/dying-----------------
 	
 	if (health == 0):
-		parent.get_node(PauseManager).lose()
+		parent.get_node("PauseManager").Lose()
 	
 	#----------------------------------------------------------
 
