@@ -14,7 +14,7 @@ var bulletPrefab = preload("res://Scenes/Bullet.tscn")
 func _ready():
 	beenFired = false;
 	#print("gunReady")
-	collider = self.get_node("CollisionShape2D")
+	collider = $CollisionShape2D
 	var tileMap = find_parent("TileMap")
 	tileMap.gunsOnLevel += 1;
 	print("Gun made. Guns on level:", tileMap.gunsOnLevel);
