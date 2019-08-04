@@ -6,7 +6,11 @@ var bulletSpeed = 750;
 var gun
 var gunOwner
 
+#var startPos = Vector2()
 var velocity = Vector2()
+
+#var trailColor 
+#var trailWidth = 0.3
 
 signal BulletHit
 
@@ -17,6 +21,8 @@ func Start(pos, dir, gun):
 	
 	rotation = dir
 	position = pos
+	#startPos = pos
+	
 	velocity = Vector2(bulletSpeed, 0).rotated(rotation)
 	#hitsLeft = pen
 	
@@ -29,7 +35,6 @@ func Start(pos, dir, gun):
 	else:
 		add_to_group("Enemy")
 		print ("setEnemy")
-	
 	
 	#------------masks layer of owner----------
 #	var pl = gunOwner.get_collision_layer()
@@ -46,7 +51,6 @@ func Start(pos, dir, gun):
 		set_collision_mask_bit(2, false)
 		
 	print("bulletcol ", get_collision_mask())
-	
 
 func _physics_process(delta): #---------------------------------------------
 	
