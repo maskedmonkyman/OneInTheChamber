@@ -1,13 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/GunBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/RifleBase.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/Weapons/Winchester.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24.3492, 6.451 )
 
 [node name="RifleBase" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 0, -0.03 )
+scale = Vector2( 1.4, 1.4 )
+texture = ExtResource( 3 )
+
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2( 0, 0 )
+position = Vector2( 3.10239, 1.24267 )
+shape = SubResource( 1 )
 
 [node name="Muzzle" parent="." index="2"]
-position = Vector2( 0, 0 )
+position = Vector2( 29.5619, -2.08168 )

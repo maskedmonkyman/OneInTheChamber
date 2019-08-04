@@ -4,8 +4,8 @@
 [ext_resource path="res://Scripts/enemyBase.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Sprites/lizrSheet.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 24.2248
+[sub_resource type="CapsuleShape2D" id=1]
+height = 12.5725
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
@@ -54,11 +54,11 @@ collision_layer = 4
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 0.57, -2.99 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D"]
 position = Vector2( 0.500687, -6.75928 )
-scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 12
 frame = 6
@@ -73,7 +73,6 @@ position = Vector2( 0, 5 )
 [node name="aimLine" type="Line2D" parent="KinematicBody2D"]
 width = 1.5
 default_color = Color( 1, 0.4, 0.4, 1 )
-texture_mode = 0
 joint_mode = 2
 
 [node name="pathFailTimer" type="Timer" parent="."]
