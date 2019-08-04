@@ -30,4 +30,6 @@ func _physics_process(delta):
 				get_tree().paused = false
 				pausePopup.hide()
 		else:
+			get_tree().paused = false
+			isPaused = false
 			get_tree().reload_current_scene()

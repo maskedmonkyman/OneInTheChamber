@@ -77,7 +77,8 @@ func LookRight():
 		$playerSprite.flip_h = false;
 
 func BulletHit():
-		--health
+		health -= 1
+		print(health)
 
 func _physics_process(delta):
 	# the directional vector the player will end up moving in
@@ -137,7 +138,7 @@ func _physics_process(delta):
 		
 	#------------------------------------death/dying-----------------
 	
-	if (health == 0):
+	if (health <= 0):
 		parent.get_node("PauseManager").Lose()
 	
 	#----------------------------------------------------------
