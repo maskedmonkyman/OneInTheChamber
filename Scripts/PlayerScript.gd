@@ -76,8 +76,7 @@ func LookRight():
 		facingRight = true;
 		$playerSprite.flip_h = false;
 
-func OnBulletHit(dealDamage):
-	if dealDamage:
+func BulletHit():
 		--health
 
 func _physics_process(delta):
@@ -144,7 +143,7 @@ func CheckForGun():
 			if (otherArea != self): 
 			
 				#if (otherArea.has_method("Equip")):  #only guns have Equip methods
-				if (otherArea.is_in_group("Gun")):
+				if (otherArea.is_in_group("Gun") && otherArea.gunOwner != null):
 					var gun
 					
 					if ("Pistol" in otherArea.gunType):

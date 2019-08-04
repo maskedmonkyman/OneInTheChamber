@@ -61,13 +61,12 @@ func _physics_process(delta): #---------------------------------------------
 		
 		if col.is_in_group("Actor"):
 			self.connect("BulletHit", col, "OnBulletHit")
-			
-		var dealDamage = true
-		if (col.is_in_group(get_groups()[0])):
-			dealDamage = false
-			print (dealDamage)
-		emit_signal("BulletHit", dealDamage) #add any other metadata here
 		
-		hitsLeft -= 1;
-		if(hitsLeft == 0):
-			queue_free();
+		print("stuff")
+		print ("dealDamage")
+		if(col.get_name() != "TileMap"):
+			col.BulletHit()
+			hitsLeft -= 1;
+			if(hitsLeft == 0):
+				queue_free();
+		queue_free();
