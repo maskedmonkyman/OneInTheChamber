@@ -19,7 +19,8 @@ var path = PoolVector2Array()
 var currentBehavior = State.Patrol
 var aimTarget : Vector2
 var heldGun
-export var health = 1
+var health
+
 
 onready var nav = find_parent("Navigation2D")
 onready var player = nav.find_node("PlayerBody")
@@ -54,6 +55,10 @@ func _ready():
 	if debugLine:
 		line.global_position = Vector2(0,0)
 	find_parent("TileMap").enemiesOnLevel += 1
+	if (!big) : 
+		health = 1
+	if (big) :
+		health = 2
 
 func giveGun(): #will be used to equip different guns to agents
 	#do some gun rng
@@ -135,13 +140,18 @@ func setAimLine():
 func PlayWalkAnim():
 	if(animState != AnimState.Walk):
 		animState = AnimState.Walk
-		animPlayer.play("Walk")
+		if(!big) :
+			animPlayer.play("Walk")
+		else:
+			pass
 
 func PlayIdleAnim():
 	if(animState != AnimState.Idle):
 		animState = AnimState.Idle
-		animPlayer.play("Idle")
-		
+		if(!big) :
+			animPlayer.play("Idle")
+		else :
+			pass
 func fire():
 	heldGun.Fire(0)
 	aimLine.clear_points()
