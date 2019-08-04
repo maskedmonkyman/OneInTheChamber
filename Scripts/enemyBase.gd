@@ -40,6 +40,8 @@ onready var aimSpeed = get_parent().aimSpeed
 onready var aimRange = get_parent().aimRange
 onready var thrust = get_parent().moveForce
 onready var debugLine : bool = get_parent().debugLine
+onready var gunType = get_parent().gunType
+onready var big : bool = get_parent().big
 
 func _ready():
 	assert(nav)
@@ -197,6 +199,3 @@ func failPath():
 		findPathInPatrolRadius()
 	else:
 		findPathToPoint(player.global_position)
-
-
-		
