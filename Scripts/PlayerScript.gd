@@ -57,6 +57,11 @@ func _physics_process(delta):
 		moveVec.x -= 1
 	if Input.is_action_pressed("Player_Right"):
 		moveVec.x += 1
+	#if Input.is_action_just_pressed("Escape"):
+		#if(!get_tree().paused):
+		#	get_tree().paused = true
+		#else:
+		#	get_tree().paused = false
 	
 	moveVec = moveVec.normalized()
 	move_and_slide(moveVec * moveSpeed * delta) 
