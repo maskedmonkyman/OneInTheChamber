@@ -73,6 +73,7 @@ position = Vector2( 0, 5 )
 [node name="aimLine" type="Line2D" parent="KinematicBody2D"]
 width = 1.5
 default_color = Color( 1, 0.4, 0.4, 1 )
+texture_mode = 0
 joint_mode = 2
 
 [node name="pathFailTimer" type="Timer" parent="."]

@@ -27,6 +27,7 @@ position = Vector2( 470.724, 286.703 )
 
 [node name="enemyHomePoint" parent="TileMap" instance=ExtResource( 5 )]
 position = Vector2( 631.752, 276.166 )
+gunType = ExtResource( 6 )
 
 [node name="enemyBase" parent="TileMap" instance=ExtResource( 5 )]
 position = Vector2( 338, 355.842 )
