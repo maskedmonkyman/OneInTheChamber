@@ -7,7 +7,7 @@
 radius = 5.1815
 
 [node name="BulletCol" type="KinematicBody2D"]
-collision_layer = 4
+collision_layer = 8
 collision_mask = 5
 script = ExtResource( 1 )
 

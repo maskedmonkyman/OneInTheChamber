@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Sprites/test_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scripts/LevelScript.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/PausePopup.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Pistol.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/enemyBase.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Rifle.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Assets/work.wav" type="AudioStream" id=8]
+[ext_resource path="res://Scenes/Shotgun.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Pistol.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/enemyBase.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Rifle.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/work.wav" type="AudioStream" id=9]
 
 [node name="Navigation2D" type="Navigation2D"]
 
@@ -23,24 +24,25 @@ margin_top = 271.338
 margin_right = 435.866
 margin_bottom = 271.338
 
-[node name="Pistol" parent="TileMap" instance=ExtResource( 4 )]
+[node name="ShotgunBase" parent="TileMap" instance=ExtResource( 4 )]
+position = Vector2( 600, 200 )
+
+[node name="Pistol" parent="TileMap" instance=ExtResource( 5 )]
 position = Vector2( 100, 100 )
 
-[node name="PlayerBody" parent="TileMap" instance=ExtResource( 5 )]
+[node name="PlayerBody" parent="TileMap" instance=ExtResource( 6 )]
 position = Vector2( 432.003, 227.001 )
 
-[node name="enemyBase" parent="TileMap" instance=ExtResource( 6 )]
+[node name="enemyBase" parent="TileMap" instance=ExtResource( 7 )]
 position = Vector2( 338, 355.842 )
 
-[node name="RifleBase2" parent="TileMap" instance=ExtResource( 7 )]
+[node name="RifleBase2" parent="TileMap" instance=ExtResource( 8 )]
 position = Vector2( 400, 200 )
 
-[node name="RifleBase" parent="TileMap" instance=ExtResource( 7 )]
+[node name="RifleBase" parent="TileMap" instance=ExtResource( 8 )]
 position = Vector2( 200, 200 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
-stream = ExtResource( 8 )
+stream = ExtResource( 9 )
 autoplay = true
-
-#fug
