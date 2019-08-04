@@ -51,6 +51,9 @@ func _ready():
 	fireTimer.connect("timeout", self, "fire")
 	giveGun()
 	PlayWalkAnim()
+	if big:
+		health = 2
+		#todo set to big sprite
 	if debugLine:
 		line.global_position = Vector2(0,0)
 
@@ -146,11 +149,10 @@ func fire():
 	aimLine.clear_points()
 	
 func BulletHit():
-	print("hit")
 	health =- 1
 	if(health <= 0):
 		heldGun.EnemyDrop()
-		print("kill") 
+		find_parent("TileMap").gunsOnLevel += 1
 		get_parent().queue_free()
 	
 
