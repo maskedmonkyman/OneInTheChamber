@@ -6,11 +6,16 @@ var parent;
 var timer;
 var pistol = preload("res://Scenes/Pistol.tscn")
 onready var area = $Area2D
+var animState;
+var animPlayer;
+var facingRight;
 
 func _ready():
 	#parent is the TileMap and the script attached to it
 	parent = get_parent()
-	
+	animPlayer = get_node("AnimationPlayer")
+	PlayIdleAnim()
+	facingRight = true;
 	#-------------------------pistol test case
 	heldGun = pistol.instance();
 	PickUpGun(heldGun)
@@ -21,6 +26,16 @@ func _ready():
 	timer.connect("timeout", self, "CheckForLoss")
 	#print(heldGun);
 	pass
+
+func PlayIdleAnim():
+	if(animState != "Idle"):
+		animState = "Idle"
+		animPlayer.play("Idle")
+
+func PlayWalkAnim():
+	if(animState != "Walk"):
+		animState = "Walk"
+		animPlayer.play("Walk")
 
 func DropGun():
 	heldGun.PlayerDrop();
@@ -64,10 +79,18 @@ func _physics_process(delta):
 		#	get_tree().paused = false
 	
 	moveVec = moveVec.normalized()
+	if(moveVec.x != 0 or moveVec.y != 0):
+		PlayWalkAnim()
+	else:
+		PlayIdleAnim()
 	move_and_slide(moveVec * moveSpeed * delta) 
 	
 	var lookVec = get_global_mouse_position() - global_position
-	global_rotation = atan2(lookVec.y, lookVec.x)
+	if(lookVec.x < 0):
+		LookLeft()
+	else:
+		LookRight()
+	#global_rotation = atan2(lookVec.y, lookVec.x)
 	
 	if(heldGun != null):
 		if Input.is_action_just_pressed("Player_Fire"):
@@ -75,6 +98,16 @@ func _physics_process(delta):
 			DropGun();
 	else:
 		CheckForGun();
+
+func LookLeft():
+	if(facingRight):
+		facingRight = false;
+		$playerSprite.flip_h = true;
+
+func LookRight():
+	if(!facingRight):
+		facingRight = true;
+		$playerSprite.flip_h = false;
 
 func CheckForGun():
 	var otherAreas = area.get_overlapping_bodies()

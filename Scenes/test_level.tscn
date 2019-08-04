@@ -26,10 +26,10 @@ position = Vector2( 338, 355.842 )
 position = Vector2( 333.043, 145.977 )
 
 [node name="Control" parent="TileMap/Pistol" instance=ExtResource( 6 )]
-margin_left = 106.604
-margin_top = 130.403
-margin_right = 106.604
-margin_bottom = 130.403
+margin_left = 102.823
+margin_top = 125.361
+margin_right = 102.823
+margin_bottom = 125.361
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
