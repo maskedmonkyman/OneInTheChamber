@@ -6,7 +6,11 @@ var bulletSpeed = 750;
 var gun
 var gunOwner
 
+var startPos = Vector2()
 var velocity = Vector2()
+
+var trailColor 
+var trailWidth = 0.3
 
 signal BulletHit
 
@@ -17,7 +21,11 @@ func Start(pos, dir, gun):
 	
 	rotation = dir
 	position = pos
+	startPos = pos
+	
 	velocity = Vector2(bulletSpeed, 0).rotated(rotation)
+	
+	trailColor = Color(255, 0, 0, 0.01)
 	
 	self.gun = gun
 	gunOwner = gun.gunOwner
@@ -33,6 +41,12 @@ func Start(pos, dir, gun):
 	#print(pl)
 	self.set_collision_mask_bit(pl, true)
 	#print(self.get_collision_mask_bit(pl))
+
+func _draw():
+	draw_line(Vector2(0, 0), startPos-global_position, trailColor, trailWidth, false )
+
+func _process(delta):
+	update()
 
 func _physics_process(delta): #---------------------------------------------
 	
