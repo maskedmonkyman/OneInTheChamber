@@ -42,3 +42,5 @@ position = Vector2( 200, 200 )
 pause_mode = 2
 stream = ExtResource( 8 )
 autoplay = true
+
+#fug
