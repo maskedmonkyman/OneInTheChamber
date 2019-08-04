@@ -55,6 +55,7 @@ func Equip(gunOwner):
 	print(collider)
 	if(collider != null):
 		collider.disabled = true;
+	
 
 func Fire(ang):
 	pass

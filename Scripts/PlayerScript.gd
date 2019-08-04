@@ -143,7 +143,7 @@ func CheckForGun():
 			if (otherArea != self): 
 			
 				#if (otherArea.has_method("Equip")):  #only guns have Equip methods
-				if (otherArea.is_in_group("Gun") && otherArea.gunOwner != null):
+				if (otherArea.is_in_group("Gun") && otherArea.gunOwner == null):
 					var gun
 					
 					if ("Pistol" in otherArea.gunType):
