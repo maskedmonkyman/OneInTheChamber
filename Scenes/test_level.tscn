@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Sprites/test_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scripts/LevelScript.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/enemyBase.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Pistol.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/PausePopup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/work.wav" type="AudioStream" id=7]
 
 [node name="Navigation2D" type="Navigation2D"]
 
@@ -29,3 +30,8 @@ margin_left = 106.604
 margin_top = 130.403
 margin_right = 106.604
 margin_bottom = 130.403
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 7 )
+autoplay = true
