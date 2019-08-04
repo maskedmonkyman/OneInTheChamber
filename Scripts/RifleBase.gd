@@ -1,6 +1,6 @@
 extends "res://Scripts/GunBase.gd"
 
-var tex = preload("res://Assets/Sprites/Weapons/Makarov.png")
+var tex = preload("res://Assets/Sprites/Weapons/Winchester.png")
 #var mfTex = preload("res://Assets/Sprites/Effects/...
 
 export var muzzleX = 10
@@ -12,7 +12,7 @@ func GunReady():
 	sprite.set_texture(tex)
 	var pos = Vector2(muzzleX, muzzleY)
 	muzzle.set_position(pos)
-	gunType = "Pistol"
+	gunType = "Rifle"
 
 func Fire(rot):
 	SpawnBullet(rotation, muzzle.global_position)
