@@ -172,11 +172,15 @@ script = ExtResource( 2 )
 [node name="PlayerBody" parent="TileMap" instance=ExtResource( 3 )]
 position = Vector2( 118.944, 114.869 )
 
-[node name="ShotgunBase" parent="TileMap/PlayerBody" instance=ExtResource( 4 )]
-position = Vector2( -245.639, 118.516 )
+[node name="ShotgunBase" parent="TileMap" instance=ExtResource( 4 )]
+position = Vector2( -126.695, 233.385 )
 
 [node name="RifleBase2" parent="TileMap" instance=ExtResource( 5 )]
 position = Vector2( 61.3376, 100.545 )
+
+[node name="ShotgunBase2" parent="TileMap" instance=ExtResource( 4 )]
+position = Vector2( 66.5454, 147.019 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="PauseManager" type="Node" parent="TileMap"]
 pause_mode = 2

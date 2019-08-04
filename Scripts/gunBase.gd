@@ -16,6 +16,8 @@ func _ready():
 	#print("gunReady")
 	collider = $CollisionShape2D
 	var tileMap = find_parent("TileMap")
+	
+	
 	tileMap.gunsOnLevel += 1;
 	print("Gun made. Guns on level:", tileMap.gunsOnLevel);
 	
@@ -23,6 +25,7 @@ func _ready():
 	muzzle = $Muzzle
 	
 	GunReady() #for each gun variant
+	print(tileMap, " ", gunType)
 	
 func GunReady():
 	pass
