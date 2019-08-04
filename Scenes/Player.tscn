@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/PlayerScript.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/toonSheet.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Pistol.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Rifle.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/ShotGun.wav" type="AudioStream" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.5833
@@ -44,8 +47,8 @@ tracks/0/keys = {
 }
 
 [node name="PlayerBody" type="KinematicBody2D" groups=[
-"Player",
 "Actor",
+"Player",
 ]]
 collision_layer = 2
 collision_mask = 3
@@ -74,3 +77,12 @@ shape = SubResource( 2 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 3 )
 anims/Walk = SubResource( 4 )
+
+[node name="PistolSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="RifleSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="ShotgunSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )

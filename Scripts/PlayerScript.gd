@@ -124,6 +124,12 @@ func _physics_process(delta):
 		#must be last, destroys gun
 		if Input.is_action_just_pressed("Player_Fire"):
 			heldGun.Fire(global_rotation);
+			if(heldGun.gunType == "Pistol") :
+				get_node("PistolSound").play()
+			if(heldGun.gunType == "Rifle") :
+				get_node("RifleSound").play()
+			if(heldGun.gunType == "Shotgun") :
+				get_node("ShotgunSound").play()
 			DropGun();
 		
 	else:
