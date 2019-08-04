@@ -10,6 +10,7 @@ func _ready():
 	#parent is the TileMap and the script attached to it
 	parent = get_parent()
 	
+	
 	#-------------------------pistol test case
 	heldGun = pistol.instance();
 	self.add_child(heldGun);
