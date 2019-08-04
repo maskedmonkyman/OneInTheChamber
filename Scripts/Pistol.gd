@@ -5,6 +5,7 @@ var muzzle
 
 func _ready():
 	muzzle = $Muzzle
+	gunType = "Pistol"
 
 func _process(delta):
 	pass
