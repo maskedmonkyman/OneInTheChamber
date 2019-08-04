@@ -53,6 +53,7 @@ func _ready():
 	PlayWalkAnim()
 	if debugLine:
 		line.global_position = Vector2(0,0)
+	find_parent("TileMap").enemiesOnLevel += 1
 
 func giveGun(): #will be used to equip different guns to agents
 	#do some gun rng
@@ -147,10 +148,13 @@ func fire():
 	
 func BulletHit():
 	print("hit")
-	health =- 1
-	if(health <= 0):
+	health -= 1
+	if(health == 0):
+		get_parent().queue_free()
 		heldGun.EnemyDrop()
 		print("kill") 
+		find_parent("TileMap").enemiesOnLevel -= 1
+		print(find_parent("TileMap").enemiesOnLevel)
 		get_parent().queue_free()
 	
 
