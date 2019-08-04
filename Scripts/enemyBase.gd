@@ -56,7 +56,8 @@ func _ready():
 
 func giveGun(): #will be used to equip different guns to agents
 	#do some gun rng
-	heldGun = Pistol.instance()
+	heldGun = gunType.instance()
+	find_parent("TileMap").gunsOnLevel -= 1
 	heldGun.Equip(self)
 	gunPivot.add_child(heldGun)
 	
