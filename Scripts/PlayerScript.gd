@@ -7,11 +7,14 @@ var timer;
 
 var pistol = preload("res://Scenes/Pistol.tscn")
 var rifle = preload("res://Scenes/Rifle.tscn")
+var shotgun = preload("res://Scenes/Shotgun.tscn")
 
 onready var area = $gunDetectionArea
 var animState;
 var animPlayer;
 var facingRight;
+
+export var health = 3
 
 func _ready():
 	#parent is the TileMap and the script attached to it
@@ -63,6 +66,20 @@ func CheckForLoss():
 		pass
 	timer.stop();
 
+func LookLeft():
+	if(facingRight):
+		facingRight = false;
+		$playerSprite.flip_h = true;
+
+func LookRight():
+	if(!facingRight):
+		facingRight = true;
+		$playerSprite.flip_h = false;
+
+func OnBulletHit(dealDamage):
+	if dealDamage:
+		--health
+
 func _physics_process(delta):
 	# the directional vector the player will end up moving in
 	var moveVec = Vector2()
@@ -112,16 +129,13 @@ func _physics_process(delta):
 		
 	else:
 		CheckForGun();
-
-func LookLeft():
-	if(facingRight):
-		facingRight = false;
-		$playerSprite.flip_h = true;
-
-func LookRight():
-	if(!facingRight):
-		facingRight = true;
-		$playerSprite.flip_h = false;
+		
+	#------------------------------------death/dying-----------------
+	
+	if (health == 0):
+		parent.get_node(PauseManager).lose()
+	
+	#----------------------------------------------------------
 
 func CheckForGun():
 	var otherAreas = area.get_overlapping_bodies()
@@ -141,8 +155,14 @@ func CheckForGun():
 						otherArea.free()
 						gun = rifle.instance()
 						
+					elif ("Shotgun" in otherArea.gunType):
+						otherArea.free()
+						gun = shotgun.instance()
+						print("shotgun")
+						
 					parent.gunsOnLevel -= 1;
 					PickUpGun(gun)
 					heldGun.Equip(self)
 				pass
 #	#self.get_node("playerSprite").rotation = atan2(lookVec.y, lookVec.x)
+
