@@ -63,6 +63,9 @@ func MFlash():
 	$AnimationPlayer.play("MuzzleFlash")
 
 func SpawnBullet(ang, pos): #pos must be Vector2
+#-----------HERE
+	print("Gun think gunowner: ", gunOwner)
+	print("Gun thinks owner's col layer: ", gunOwner.get_collision_layer())
 	var bullet = bulletPrefab.instance()
 	bullet.Start(pos, ang, self)
 	get_tree().get_root().add_child(bullet)

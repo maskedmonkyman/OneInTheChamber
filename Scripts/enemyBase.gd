@@ -54,6 +54,10 @@ func _ready():
 func giveGun(): #will be used to equip different guns to agents
 	#do some gun rng
 	heldGun = Pistol.instance()
+	heldGun.gunOwner = self
+	#---------daichi test code
+	print("enemy thinks col layer is: ",self.get_collision_layer())
+	#--------------
 	gunPivot.add_child(heldGun)
 	
 func _process(delta):
@@ -86,7 +90,7 @@ func drawCircle(center : Vector2, radius, color):
 
 func _physics_process(delta):
 	if !fireTimer.is_stopped():
-		#do turn gun and stuff
+		gunPivot.look_at(aimTarget)
 		return
 	
 	if (currentBehavior == State.Patrol):
@@ -103,8 +107,8 @@ func _physics_process(delta):
 	if (currentBehavior == State.Chase):
 		#shoot
 		if (playerDist() < aimRange):
-			fireTimer.start()
 			aimTarget = player.global_position
+			fireTimer.start()
 		#repath player
 		elif (playerDistToPoint(path[path.size()-1]) > agroRepathDist):
 			findPathToPoint(player.global_position)
@@ -130,9 +134,9 @@ func PlayIdleAnim():
 	if(animState != AnimState.Idle):
 		animState = AnimState.Idle
 		animPlayer.play("Idle")
-
+		
 func fire():
-	print("bang")
+	heldGun.Fire(0) #maybe shouldn't pass zero
 
 func followPath(delta):
 	var dir = path[0] - global_position; #get point direction

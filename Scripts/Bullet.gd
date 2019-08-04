@@ -30,18 +30,31 @@ func Start(pos, dir, gun):
 	
 	self.gun = gun
 	gunOwner = gun.gunOwner
+	print("gunowner: ", gunOwner)
 	#gives bullet affiliation
 	if (gunOwner.is_in_group("Player")):
 		add_to_group("Player")
 	else:
 		add_to_group("Enemy")
+		print ("setEnemy")
 	
 	
 	#------------masks layer of owner----------
-	var pl = gunOwner.get_collision_layer()
-	#print(pl)
-	self.set_collision_mask_bit(pl, true)
-	#print(self.get_collision_mask_bit(pl))
+#	var pl = gunOwner.get_collision_layer()
+#	print("pl",pl)
+#	var sl = get_collision_mask()
+#
+#	self.set_collision_mask(sl-pl)
+#	print("sl",self.get_collision_mask())
+	
+	#-------------fuck it---
+	if is_in_group("Player"):
+		set_collision_mask_bit(1, false)
+	else:
+		set_collision_mask_bit(2, false)
+		
+	print("bulletcol ", get_collision_mask())
+	
 
 func _draw():
 	draw_line(Vector2(0, 0), startPos-global_position, trailColor, trailWidth, false )
