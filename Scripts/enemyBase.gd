@@ -19,7 +19,7 @@ var path = PoolVector2Array()
 var currentBehavior = State.Patrol
 var aimTarget : Vector2
 var heldGun
-var health = 0
+var health = 1
 
 onready var nav = find_parent("Navigation2D")
 onready var player = nav.find_node("PlayerBody")
@@ -139,14 +139,15 @@ func PlayIdleAnim():
 		animPlayer.play("Idle")
 		
 func fire():
-	#heldGun.Fire(0)
+	heldGun.Fire(0)
 	aimLine.clear_points()
 	
-func BulletHit(someBoolVar : bool):
+func BulletHit():
 	print("hit")
 	health =- 1
-	if(health == 0):
-		heldGun.enemyDrop()
+	if(health <= 0):
+		heldGun.EnemyDrop()
+		print("kill") 
 		get_parent().queue_free()
 	
 
