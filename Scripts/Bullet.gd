@@ -24,6 +24,7 @@ func Start(pos, dir, gun):
 	startPos = pos
 	
 	velocity = Vector2(bulletSpeed, 0).rotated(rotation)
+	#hitsLeft = pen
 	
 	trailColor = Color(255, 0, 0, 0.01)
 	
