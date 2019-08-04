@@ -7,8 +7,8 @@ var hasLost
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pausePopup = $PausePopup
-	losePopup = $LosePopup
+	pausePopup = get_child(0)
+	losePopup = get_child(1)
 	isPaused = false
 	hasLost = false
 	pass # Replace with function body.
