@@ -1,14 +1,13 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Sprites/tileset.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/LevelScript.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/enemyBase.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Rifle.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/PauseManager.gd" type="Script" id=6]
-[ext_resource path="res://Scenes/PausePopup.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/LosePopup.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Assets/work.wav" type="AudioStream" id=9]
+[ext_resource path="res://Scenes/Rifle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/PauseManager.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/PausePopup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/LosePopup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/work.wav" type="AudioStream" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 3, 48, 27, 48, 27, 60, 3, 60 )
@@ -161,29 +160,21 @@ script = ExtResource( 2 )
 [node name="PlayerBody" parent="TileMap" instance=ExtResource( 3 )]
 position = Vector2( 173.644, 101.51 )
 
-[node name="enemyHomePoint" parent="TileMap" instance=ExtResource( 4 )]
-position = Vector2( 260.081, 152.704 )
-
-[node name="enemyBase" parent="TileMap" instance=ExtResource( 4 )]
-position = Vector2( 63.6406, 166.363 )
-aimSpeed = 0.7
-aimRange = 150
-
-[node name="RifleBase2" parent="TileMap" instance=ExtResource( 5 )]
+[node name="RifleBase2" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 61.3376, 100.545 )
 
 [node name="PauseManager" type="Node" parent="TileMap"]
 pause_mode = 2
-script = ExtResource( 6 )
+script = ExtResource( 5 )
 
-[node name="PausePopup" parent="TileMap/PauseManager" instance=ExtResource( 7 )]
+[node name="PausePopup" parent="TileMap/PauseManager" instance=ExtResource( 6 )]
 visible = false
 margin_left = 435.866
 margin_top = 271.338
 margin_right = 435.866
 margin_bottom = 271.338
 
-[node name="LosePopup" parent="TileMap/PauseManager" instance=ExtResource( 8 )]
+[node name="LosePopup" parent="TileMap/PauseManager" instance=ExtResource( 7 )]
 visible = false
 margin_left = 406.678
 margin_top = 259.398
@@ -192,5 +183,5 @@ margin_bottom = 259.398
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
-stream = ExtResource( 9 )
+stream = ExtResource( 8 )
 autoplay = true
