@@ -19,7 +19,7 @@ var path = PoolVector2Array()
 var currentBehavior = State.Patrol
 var aimTarget : Vector2
 var heldGun
-var health = 1
+export var health = 1
 
 onready var nav = find_parent("Navigation2D")
 onready var player = nav.find_node("PlayerBody")
