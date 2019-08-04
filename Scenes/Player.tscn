@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/PlayerScript.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/soldier.png" type="Texture" id=2]
@@ -6,9 +6,12 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 31.3494
 
+[sub_resource type="CircleShape2D" id=2]
+radius = 32.9988
+
 [node name="PlayerBody" type="KinematicBody2D" groups=[
-"Actor",
 "Player",
+"Actor",
 ]]
 collision_layer = 2
 collision_mask = 3
@@ -25,3 +28,8 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )

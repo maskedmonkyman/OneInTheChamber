@@ -5,20 +5,20 @@ var heldGun;
 var parent;
 var timer;
 var pistol = preload("res://Scenes/Pistol.tscn")
+onready var area = $Area2D
 
 func _ready():
 	#parent is the TileMap and the script attached to it
 	parent = get_parent()
 	
-	
 	#-------------------------pistol test case
 	heldGun = pistol.instance();
-	self.add_child(heldGun);
-	parent.gunsOnLevel += 1;
+	PickUpGun(heldGun)
+	heldGun.Equip(self)
+	#parent.gunsOnLevel += 1;
 	#heldGun.position.x += 100
 	timer = $Timer
 	timer.connect("timeout", self, "CheckForLoss")
-	heldGun.Equip(self)
 	#print(heldGun);
 	pass
 
@@ -26,9 +26,17 @@ func DropGun():
 	heldGun.PlayerDrop();
 	heldGun = null;
 	parent.gunsOnLevel -= 1;
+	print("Gun dropped. Guns on level:", parent.gunsOnLevel);
 	if(parent.gunsOnLevel == 0):
 		timer.set_wait_time(2)
 		timer.start()
+
+func PickUpGun(gun):
+	print (gun.get_class())
+	#if(gun.typeOf()):
+	#	print("pistol")
+	heldGun = gun;
+	self.add_child(gun);
 
 func CheckForLoss():
 	print ("checking for loss")
@@ -60,4 +68,22 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("Player_Fire"):
 			heldGun.Fire(global_rotation);
 			DropGun();
+	else:
+		CheckForGun();
+
+func CheckForGun():
+	var otherAreas = area.get_overlapping_bodies()
+	if (otherAreas.size() > 1):
+		for otherArea in otherAreas:
+			if(otherArea != self): 
+				if(otherArea.has_method("Equip")):  #only guns have Equip methods
+					#print("blah")
+					var gun
+					if("Pistol" in otherArea.gunType):
+						otherArea.free()
+						gun = pistol.instance()
+					parent.gunsOnLevel -= 1;
+					PickUpGun(gun)
+					heldGun.Equip(self)
+				pass
 	#self.get_node("playerSprite").rotation = atan2(lookVec.y, lookVec.x)
