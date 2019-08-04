@@ -41,12 +41,12 @@ tracks/0/keys = {
 }
 
 [node name="enemyHomePoint" type="Position2D" groups=[
+"Actor",
 "Enemy",
 ]]
 script = ExtResource( 1 )
 
 [node name="Line2D" type="Line2D" parent="."]
-texture_mode = 2131714737
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 collision_layer = 4
@@ -68,6 +68,11 @@ anims/Walk = SubResource( 3 )
 
 [node name="gunPivot" type="Node2D" parent="KinematicBody2D"]
 position = Vector2( 0, 5 )
+
+[node name="aimLine" type="Line2D" parent="KinematicBody2D"]
+width = 1.5
+default_color = Color( 1, 0.4, 0.4, 1 )
+joint_mode = 2
 
 [node name="pathFailTimer" type="Timer" parent="."]
 one_shot = true
