@@ -22,9 +22,9 @@ func _ready():
 	sprite = $Sprite
 	muzzle = $Muzzle
 	
-	GunSpefReady() #for each gun variant
+	GunReady() #for each gun variant
 	
-func GunSpefReady():
+func GunReady():
 	pass
 
 func EnemyDrop():
@@ -57,6 +57,10 @@ func Equip(gunOwner):
 
 func Fire(ang):
 	pass
+
+func MFlash():
+	var mf = $mfSprite
+	$AnimationPlayer.play("MuzzleFlash")
 
 func SpawnBullet(ang, pos): #pos must be Vector2
 	var bullet = bulletPrefab.instance()

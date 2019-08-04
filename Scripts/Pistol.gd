@@ -1,15 +1,18 @@
 extends "res://Scripts/GunBase.gd"
 
-func _ready():
-	muzzle = $Muzzle
+var tex = preload("res://Assets/Sprites/Weapons/Makarov.png")
+#var mfTex = preload("res://Assets/Sprites/Effects/...
+
+export var muzzleX = 10
+export var muzzleY = 1.5
+export var pens = 2
+
+func GunReady():
+	#performance warning - dynamic texture loading
+	sprite.set_texture(tex)
+	var pos = Vector2(muzzleX, muzzleY)
+	muzzle.set_position(pos)
 	gunType = "Pistol"
 
-func _process(delta):
-	pass
-
-func Fire(ang):
-	var bullet = bulletPrefab.instance()
-	#print(bullet)
-	#print($Muzzle)
-	bullet.Start(muzzle.global_position, ang, self)
-	get_tree().get_root().add_child(bullet)
+func Fire(rot):
+	SpawnBullet(rotation, muzzle.global_position)

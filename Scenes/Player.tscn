@@ -4,10 +4,10 @@
 [ext_resource path="res://Assets/Sprites/toonSheet.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 33.5437
+radius = 24.5833
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 32.9988
+radius = 22.3303
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
@@ -65,9 +65,10 @@ __meta__ = {
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="gunDetectionArea" type="Area2D" parent="."]
+collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gunDetectionArea"]
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

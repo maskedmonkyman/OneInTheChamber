@@ -4,8 +4,11 @@ var moveSpeed = 10_000;
 var heldGun;
 var parent;
 var timer;
+
 var pistol = preload("res://Scenes/Pistol.tscn")
-onready var area = $Area2D
+var rifle = preload("res://Scenes/Rifle.tscn")
+
+onready var area = $gunDetectionArea
 var animState;
 var animPlayer;
 var facingRight;
@@ -83,6 +86,7 @@ func _physics_process(delta):
 		PlayWalkAnim()
 	else:
 		PlayIdleAnim()
+		
 	move_and_slide(moveVec * moveSpeed * delta) 
 	
 	var lookVec = get_global_mouse_position() - global_position
@@ -92,10 +96,20 @@ func _physics_process(delta):
 		LookRight()
 	#global_rotation = atan2(lookVec.y, lookVec.x)
 	
+	#gun control--------------------------------------------
 	if(heldGun != null):
+		heldGun.rotation = atan2(lookVec.y, lookVec.x)
+		
+		if facingRight: 
+			heldGun.sprite.flip_v = false
+		else:
+			heldGun.sprite.flip_v = true
+		
+		#must be last, destroys gun
 		if Input.is_action_just_pressed("Player_Fire"):
 			heldGun.Fire(global_rotation);
 			DropGun();
+		
 	else:
 		CheckForGun();
 
@@ -113,15 +127,22 @@ func CheckForGun():
 	var otherAreas = area.get_overlapping_bodies()
 	if (otherAreas.size() > 1):
 		for otherArea in otherAreas:
-			if(otherArea != self): 
-				if(otherArea.has_method("Equip")):  #only guns have Equip methods
-					#print("blah")
+			if (otherArea != self): 
+			
+				#if (otherArea.has_method("Equip")):  #only guns have Equip methods
+				if (otherArea.is_in_group("Gun")):
 					var gun
-					if("Pistol" in otherArea.gunType):
+					
+					if ("Pistol" in otherArea.gunType):
 						otherArea.free()
 						gun = pistol.instance()
+						
+					elif ("Rifle" in otherArea.gunType):
+						otherArea.free()
+						gun = rifle.instance()
+						
 					parent.gunsOnLevel -= 1;
 					PickUpGun(gun)
 					heldGun.Equip(self)
 				pass
-	#self.get_node("playerSprite").rotation = atan2(lookVec.y, lookVec.x)
+#	#self.get_node("playerSprite").rotation = atan2(lookVec.y, lookVec.x)

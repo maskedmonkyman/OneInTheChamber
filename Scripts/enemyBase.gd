@@ -15,8 +15,9 @@ func _ready():
 	
 func _input(event):
 	if Input.is_action_just_pressed("Player_Fire"):
-		print(event.global_position)
-		findPath(event.global_position)
+		#print(event.global_position)
+		#findPath(event.global_position)
+		pass
 	
 func _physics_process(delta):
 	#if the path is empty turn of physics process
