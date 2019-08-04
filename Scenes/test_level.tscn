@@ -21,6 +21,8 @@ position = Vector2( 432.003, 227.001 )
 
 [node name="enemyBase" parent="TileMap" instance=ExtResource( 4 )]
 position = Vector2( 338, 355.842 )
+aimRange = 150
+debugLine = true
 
 [node name="Pistol" parent="TileMap" instance=ExtResource( 5 )]
 position = Vector2( 333.043, 145.977 )
