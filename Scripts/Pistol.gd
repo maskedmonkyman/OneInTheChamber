@@ -1,7 +1,4 @@
-extends "res://Scripts/gunBase.gd"
-
-var bulletPrefab = preload("res://Scenes/Bullet.tscn")
-var muzzle
+extends "res://Scripts/GunBase.gd"
 
 func _ready():
 	muzzle = $Muzzle
