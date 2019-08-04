@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/Sprites/lizrSheet.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 24.2248
+radius = 10.949
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
@@ -58,7 +58,6 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D"]
 position = Vector2( 0.500687, -6.75928 )
-scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 12
 frame = 6
