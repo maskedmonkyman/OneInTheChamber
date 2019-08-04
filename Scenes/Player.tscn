@@ -3,11 +3,19 @@
 [ext_resource path="res://Scripts/PlayerScript.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/toonSheet.png" type="Texture" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
+<<<<<<< HEAD
+[sub_resource type="CircleShape2D" id=1]
+radius = 24.5833
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 22.3303
+=======
+[sub_resource type="CapsuleShape2D" id=5]
 radius = 19.9417
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=6]
 radius = 20.1078
+>>>>>>> 153be478cb60682fb4d4a823505f35e757cbd848
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
@@ -44,8 +52,8 @@ tracks/0/keys = {
 }
 
 [node name="PlayerBody" type="KinematicBody2D" groups=[
-"Actor",
 "Player",
+"Actor",
 ]]
 collision_layer = 2
 collision_mask = 3
@@ -58,17 +66,23 @@ texture = ExtResource( 2 )
 hframes = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="gunDetectionArea" type="Area2D" parent="."]
+collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+<<<<<<< HEAD
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gunDetectionArea"]
 shape = SubResource( 2 )
+=======
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 6 )
+>>>>>>> 153be478cb60682fb4d4a823505f35e757cbd848
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 3 )

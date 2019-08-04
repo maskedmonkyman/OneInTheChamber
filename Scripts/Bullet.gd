@@ -18,6 +18,7 @@ func Start(pos, dir, gun):
 	rotation = dir
 	position = pos
 	velocity = Vector2(bulletSpeed, 0).rotated(rotation)
+	#hitsLeft = pen
 	
 	self.gun = gun
 	gunOwner = gun.gunOwner

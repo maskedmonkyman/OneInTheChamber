@@ -1,11 +1,32 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scripts/gunBase.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/GunBase.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Weapons/Makarov.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Effects/MFlash.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
-[node name="GunBase" type="KinematicBody2D"]
+[sub_resource type="Animation" id=2]
+resource_name = "MuzzleFlash"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("../RifleBase/mfSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="GunBase" type="KinematicBody2D" groups=[
+"Gun",
+]]
+collision_layer = 8
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -18,3 +39,13 @@ shape = SubResource( 1 )
 
 [node name="Muzzle" type="Position2D" parent="."]
 position = Vector2( 1.5, -1.5 )
+
+[node name="mfSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 39.975, -6.1653 )
+texture = ExtResource( 3 )
+vframes = 4
+frame = 3
+
+[node name="mfAnimation" type="AnimationPlayer" parent="."]
+anims/MuzzleFlash = SubResource( 2 )
