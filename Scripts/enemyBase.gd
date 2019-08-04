@@ -19,6 +19,7 @@ var path = PoolVector2Array()
 var currentBehavior = State.Patrol
 var aimTarget : Vector2
 var heldGun
+var health = 0
 
 onready var nav = find_parent("Navigation2D")
 onready var player = nav.find_node("PlayerBody")
@@ -141,10 +142,12 @@ func fire():
 	#heldGun.Fire(0)
 	aimLine.clear_points()
 	
-func OnBulletHit(someBoolVar : bool):
+func BulletHit(someBoolVar : bool):
 	print("hit")
-	heldGun.enemyDrop()
-	get_parent().queue_free()
+	health =- 1
+	if(health == 0):
+		heldGun.enemyDrop()
+		get_parent().queue_free()
 	
 
 func followPath(delta):
@@ -193,3 +196,6 @@ func failPath():
 		findPathInPatrolRadius()
 	else:
 		findPathToPoint(player.global_position)
+
+
+		
