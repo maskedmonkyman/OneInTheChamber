@@ -28,6 +28,7 @@ onready var fireTimer = $"../fireTimer"
 onready var line = $"../Line2D"
 onready var animPlayer = $"AnimationPlayer"
 onready var gunPivot = $"gunPivot"
+onready var aimLine = $"aimLine"
 
 #this is awful but no time to refactor
 onready var patrolRad = get_parent().patrolRad
@@ -41,7 +42,6 @@ onready var debugLine : bool = get_parent().debugLine
 
 func _ready():
 	assert(nav)
-	assert(animPlayer)
 	pathFailTimer.wait_time = pathFailTime
 	pathFailTimer.connect("timeout", self, "failPath")
 	fireTimer.wait_time = aimSpeed
@@ -54,10 +54,7 @@ func _ready():
 func giveGun(): #will be used to equip different guns to agents
 	#do some gun rng
 	heldGun = Pistol.instance()
-	heldGun.gunOwner = self
-	#---------daichi test code
-	print("enemy thinks col layer is: ",self.get_collision_layer())
-	#--------------
+	heldGun.Equip(self)
 	gunPivot.add_child(heldGun)
 	
 func _process(delta):
@@ -73,7 +70,7 @@ func _draw():
 		drawCircle(Vector2(0,0), patrolAgroRadius, Color(0,0,255))
 		#homePointPatrolRad
 		drawCircle(homePoint-global_position, patrolRad, Color(255,255,0))
-		
+	
 func drawCircle(center : Vector2, radius, color):
 	var segments = 32
 	var angChange = 360/segments
@@ -90,7 +87,7 @@ func drawCircle(center : Vector2, radius, color):
 
 func _physics_process(delta):
 	if !fireTimer.is_stopped():
-		gunPivot.look_at(aimTarget)
+		heldGun.look_at(aimTarget)
 		return
 	
 	if (currentBehavior == State.Patrol):
@@ -108,6 +105,7 @@ func _physics_process(delta):
 		#shoot
 		if (playerDist() < aimRange):
 			aimTarget = player.global_position
+			setAimLine()
 			fireTimer.start()
 		#repath player
 		elif (playerDistToPoint(path[path.size()-1]) > agroRepathDist):
@@ -123,7 +121,11 @@ func _physics_process(delta):
 		#find new path if we some how ran out of points
 		else:
 			findPathToPoint(player.global_position)
-			
+
+func setAimLine():
+	aimLine.global_position = Vector2(0,0)
+	aimLine.add_point(global_position)
+	aimLine.add_point(aimTarget)
 
 func PlayWalkAnim():
 	if(animState != AnimState.Walk):
@@ -136,7 +138,14 @@ func PlayIdleAnim():
 		animPlayer.play("Idle")
 		
 func fire():
-	heldGun.Fire(0) #maybe shouldn't pass zero
+	#heldGun.Fire(0)
+	aimLine.clear_points()
+	
+func OnBulletHit(someBoolVar : bool):
+	print("hit")
+	heldGun.enemyDrop()
+	get_parent().queue_free()
+	
 
 func followPath(delta):
 	var dir = path[0] - global_position; #get point direction
