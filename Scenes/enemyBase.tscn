@@ -1,16 +1,85 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/enemyVars.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/enemyBase.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Sprites/lizrSheet.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/bigSheet.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 12.5725
 
+[sub_resource type="Animation" id=4]
+resource_name = "BigIdle1"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("BigSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "BigIdle2"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("BigSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 13 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "BigWalk1"
+length = 0.48
+loop = true
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath("BigSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.44 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "BigWalk2"
+length = 0.48
+loop = true
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath("BigSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.44 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 ]
+}
+
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("SmallSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -28,7 +97,7 @@ length = 0.44
 loop = true
 step = 0.04
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("SmallSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -56,13 +125,24 @@ script = ExtResource( 2 )
 position = Vector2( 0.57, -2.99 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+[node name="SmallSprite" type="Sprite" parent="KinematicBody2D"]
 position = Vector2( 0.500687, -6.75928 )
 texture = ExtResource( 3 )
 hframes = 12
 frame = 6
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D"]
+[node name="BigSprite" type="Sprite" parent="KinematicBody2D"]
+position = Vector2( 1, -6.759 )
+texture = ExtResource( 4 )
+vframes = 3
+hframes = 13
+frame = 26
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="KinematicBody2D"]
+anims/BigIdle1 = SubResource( 4 )
+anims/BigIdle2 = SubResource( 6 )
+anims/BigWalk1 = SubResource( 5 )
+anims/BigWalk2 = SubResource( 7 )
 anims/Idle = SubResource( 2 )
 anims/Walk = SubResource( 3 )
 
