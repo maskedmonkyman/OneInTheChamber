@@ -1,7 +1,5 @@
 extends Position2D
 
-enum GunType {Pistol, Rifle, ShotGun}
-
 export var patrolRad = 100
 export var patrolAgroRadius = 200;
 export var deAgroRadius = 300;

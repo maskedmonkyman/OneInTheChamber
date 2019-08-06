@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-const Pistol = preload("res://Scenes/Pistol.tscn")
 #how close an agent can get to a path point in order to
 #consider it reached
 const distToPointTolerance = 2
@@ -20,7 +19,8 @@ var currentBehavior = State.Patrol
 var aimTarget : Vector2
 var heldGun
 var health
-
+var facingRight = true;
+var usedSprite
 
 onready var nav = find_parent("Navigation2D")
 onready var player = nav.find_node("PlayerBody")
@@ -29,6 +29,8 @@ onready var pathFailTimer = $"../pathFailTimer"
 onready var fireTimer = $"../fireTimer"
 onready var line = $"../Line2D"
 onready var animPlayer = $"AnimationPlayer"
+onready var smallSprite = $"SmallSprite"
+onready var bigSprite = $"BigSprite"
 onready var gunPivot = $"gunPivot"
 onready var aimLine = $"aimLine"
 
@@ -57,8 +59,12 @@ func _ready():
 	find_parent("TileMap").enemiesOnLevel += 1
 	if (!big) : 
 		health = 1
+		bigSprite.hide();
+		usedSprite = smallSprite
 	if (big) :
 		health = 2
+		smallSprite.hide();
+		usedSprite = bigSprite
 
 func giveGun(): #will be used to equip different guns to agents
 	#do some gun rng
@@ -95,6 +101,16 @@ func drawCircle(center : Vector2, radius, color):
 		draw_line(point1, point2, color)
 		ang += angChange
 
+func LookLeft():
+	if(facingRight):
+		facingRight = false;
+		usedSprite.flip_h = true;
+
+func LookRight():
+	if(!facingRight):
+		facingRight = true;
+		usedSprite.flip_h = false;
+
 func _physics_process(delta):
 	if !fireTimer.is_stopped():
 		heldGun.look_at(aimTarget)
@@ -112,24 +128,35 @@ func _physics_process(delta):
 		else:
 			findPathInPatrolRadius()
 	if (currentBehavior == State.Chase):
+		#look at player
+		#var lookVec = player.global_position - global_position
+		#if(lookVec.x < 0):
+		#	LookLeft()
+		#else:
+		#	LookRight()
 		#shoot
 		if (playerDist() < aimRange):
+			print("shoot")
 			aimTarget = player.global_position
 			setAimLine()
 			fireTimer.start()
 		#repath player
 		elif (playerDistToPoint(path[path.size()-1]) > agroRepathDist):
+			print("repath")
 			findPathToPoint(player.global_position)
 			followPath(delta)
 		#deAgro
 		elif(playerDist() > deAgroRadius):
+			print("deagro")
 			currentBehavior = State.Patrol
 			findPathInPatrolRadius()
 		#follow path
 		elif (path.size() > 0):
+			print("follow path")
 			followPath(delta)
 		#find new path if we some how ran out of points
 		else:
+			"repath else"
 			findPathToPoint(player.global_position)
 
 func setAimLine():
@@ -143,7 +170,10 @@ func PlayWalkAnim():
 		if(!big) :
 			animPlayer.play("Walk")
 		else:
-			pass
+			if(health == 2):
+				animPlayer.play("BigWalk1")
+			else:
+				animPlayer.play("BigWalk2")
 
 func PlayIdleAnim():
 	if(animState != AnimState.Idle):
@@ -151,18 +181,20 @@ func PlayIdleAnim():
 		if(!big) :
 			animPlayer.play("Idle")
 		else :
-			pass
+			if(health == 2):
+				animPlayer.play("BigIdle1")
+			else:
+				animPlayer.play("BigIdle2")
+
 func fire():
 	heldGun.Fire(0)
 	aimLine.clear_points()
 	
 func BulletHit():
-	print("hit")
 	health -= 1
 	if(health == 0):
 		get_parent().queue_free()
 		heldGun.EnemyDrop()
-		print("kill") 
 		find_parent("TileMap").enemiesOnLevel -= 1
 		print(find_parent("TileMap").enemiesOnLevel)
 		get_parent().queue_free()
