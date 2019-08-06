@@ -5,3 +5,9 @@
 
 [node name="Pistol" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+scale = Vector2( 1.2, 1.2 )
+
+[node name="Muzzle" parent="." index="2"]
+position = Vector2( 6.17266, -1.83739 )

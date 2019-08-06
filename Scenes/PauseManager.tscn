@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/PauseManager.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/PausePopup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/PausePopup.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/LosePopup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/LosePopup.gd" type="Script" id=5]
+
+[node name="PauseManager" type="Node"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="PausePopup" type="Control" parent="." instance=ExtResource( 2 )]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 435.866
+margin_top = 271.338
+margin_right = 435.866
+margin_bottom = 271.338
+script = ExtResource( 3 )
+
+[node name="LosePopup" type="Control" parent="." instance=ExtResource( 4 )]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 406.678
+margin_top = 259.398
+margin_right = 406.678
+margin_bottom = 259.398
+script = ExtResource( 5 )

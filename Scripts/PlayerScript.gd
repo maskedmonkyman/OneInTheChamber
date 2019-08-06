@@ -4,6 +4,7 @@ var moveSpeed = 10_000;
 var heldGun;
 var parent;
 var timer;
+var hand;
 
 var pistol = preload("res://Scenes/Pistol.tscn")
 var rifle = preload("res://Scenes/Rifle.tscn")
@@ -20,6 +21,7 @@ func _ready():
 	#parent is the TileMap and the script attached to it
 	parent = get_parent()
 	animPlayer = get_node("AnimationPlayer")
+	hand = $Hand
 	PlayIdleAnim()
 	facingRight = true;
 	#-------------------------pistol test case
@@ -58,6 +60,7 @@ func PickUpGun(gun):
 	#	print("pistol")
 	heldGun = gun;
 	self.add_child(gun);
+	gun.position = hand.position
 
 func CheckForLoss():
 	print ("checking for loss")
@@ -69,11 +72,17 @@ func CheckForLoss():
 func LookLeft():
 	if(facingRight):
 		facingRight = false;
+		hand.position.x = -hand.position.x
+		if(heldGun != null):
+			heldGun.position.x = -heldGun.position.x
 		$playerSprite.flip_h = true;
 
 func LookRight():
 	if(!facingRight):
 		facingRight = true;
+		hand.position.x = -hand.position.x
+		if(heldGun != null):
+			heldGun.position.x = -heldGun.position.x
 		$playerSprite.flip_h = false;
 
 func BulletHit():

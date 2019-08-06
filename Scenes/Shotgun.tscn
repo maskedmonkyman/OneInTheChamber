@@ -5,13 +5,13 @@
 [ext_resource path="res://Assets/Sprites/Weapons/UTS.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16.8866, 5.18686 )
+extents = Vector2( 20.4958, 6.03313 )
 
 [node name="ShotgunBase" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
-scale = Vector2( 1, 1 )
+scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" parent="." index="1"]
@@ -19,4 +19,4 @@ position = Vector2( 3.757, -0.42 )
 shape = SubResource( 1 )
 
 [node name="Muzzle" parent="." index="2"]
-position = Vector2( 20.6591, -1.6177 )
+position = Vector2( 21.9672, -0.463525 )
