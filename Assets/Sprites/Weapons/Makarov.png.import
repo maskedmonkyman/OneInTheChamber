@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Makarov.png-408937ecf8b37dd35e07951413f81e99.stex"
+path="res://.import/Makarov.png-565a942a64c38d7c3aea441a31f82dd8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Weapons/Makarov.png"
-dest_files=[ "res://.import/Makarov.png-408937ecf8b37dd35e07951413f81e99.stex" ]
+source_file="res://assets/sprites/weapons/Makarov.png"
+dest_files=[ "res://.import/Makarov.png-565a942a64c38d7c3aea441a31f82dd8.stex" ]
 
 [params]
 

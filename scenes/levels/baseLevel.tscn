@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/levels/levelManagerScript.gd" type="Script" id=1]
+
+
+[node name="navigation2D" type="Navigation2D"]
+script = ExtResource( 1 )
+
+[node name="tileMap" type="TileMap" parent="."]
+cell_size = Vector2( 32, 32 )
+format = 1

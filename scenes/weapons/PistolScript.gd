@@ -1,0 +1,2 @@
+extends GunBase
+class_name Pistol

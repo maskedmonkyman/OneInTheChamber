@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/UTS.png-6ff92e750b2a25c6102c7cafd7ff56c8.stex"
+path="res://.import/UTS.png-fcac29b91b2f8178b1437e2f97f7966f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Weapons/UTS.png"
-dest_files=[ "res://.import/UTS.png-6ff92e750b2a25c6102c7cafd7ff56c8.stex" ]
+source_file="res://assets/sprites/weapons/UTS.png"
+dest_files=[ "res://.import/UTS.png-fcac29b91b2f8178b1437e2f97f7966f.stex" ]
 
 [params]
 
