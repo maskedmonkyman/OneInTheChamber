@@ -1,11 +1,12 @@
 extends KinematicBody2D
+class_name Player
 
 enum AnimState {Idle, Walk}
 
 export var moveSpeed = 10_000;
 export var health = 3
 export var debugInfo : bool = false
-export var spawnGun = preload("res://scenes/weapons/Pistol.tscn") #the weapon the player will spawn with
+export var spawnGun = preload("res://scenes/weapons/guns/Pistol.tscn") #the weapon the player will spawn with
 
 var animState = AnimState.Idle
 var moveDir : Vector2 = Vector2(0,0) #the direction the player will move per physics tick
@@ -90,6 +91,7 @@ func playWalkAnim():
 		animState = AnimState.Walk
 		animPlayer.play("Walk")
 
+#todo fancy gun drop animation
 func shootAndDropGun():
 	heldGun.fire(armPivot.rotation) #shoot
 	#do cleanup and reparent
@@ -98,9 +100,8 @@ func shootAndDropGun():
 	handLocation.remove_child(heldGun)
 	levelRoot.add_child(heldGun)
 	heldGun.global_position = global_position
-	scale.y = abs(scale.y)
+	heldGun.scale.y = abs(scale.y)
 	heldGun = null
-	#todo fancy gun drop animation
 
 func pickUpGun(gun : GunBase) -> bool: #tries to pick up gun and retruns the result of the pickup
 	if (!gun.playerFired and !gun.gunOwner):

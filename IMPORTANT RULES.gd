@@ -21,6 +21,10 @@
 #	 functions and variables
 #	-tl:dr all game state is handled by the levelManager do not do it in character or other scripts
 #
+#all guns inherit from GunBase, which holds a reference to a bullet. To fire a gun call it's fire method and
+#pass it the angle it should be pointing. To change the bullet type of a gun make a new Bullet from BulletBase
+#and modify it accordingly
+#
 #-------------------------------- Script --------------------------------
 #non constant variables and methods are camelCase
 #

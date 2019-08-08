@@ -12,22 +12,28 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "BulletBase",
 "language": "GDScript",
-"path": "res://scenes/weapons/BulletBaseScript.gd"
+"path": "res://scenes/weapons/bullets/BulletBaseScript.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "GunBase",
 "language": "GDScript",
-"path": "res://scenes/weapons/GunBaseScript.gd"
+"path": "res://scenes/weapons/guns/GunBaseScript.gd"
 }, {
 "base": "GunBase",
 "class": "Pistol",
 "language": "GDScript",
-"path": "res://scenes/weapons/PistolScript.gd"
+"path": "res://scenes/weapons/guns/PistolScript.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://scenes/character/PlayerScript.gd"
 } ]
 _global_script_class_icons={
 "BulletBase": "",
 "GunBase": "",
-"Pistol": ""
+"Pistol": "",
+"Player": ""
 }
 
 [application]

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name GunBase
 
-export var bullet = preload("res://scenes/weapons/BulletBase.tscn")
+export var bullet = preload("res://scenes/weapons/bullets/BulletBase.tscn")
 
 var playerFired : bool = false
 var gunOwner = null
@@ -9,9 +9,9 @@ var gunOwner = null
 onready var sprite = $sprite
 onready var collider = $collisionShape2D
 onready var muzzlePoint = $muzzlePoint
-onready var muzzleFlashSprite = $muzzleFlashSprite
+onready var muzzleFlashSprite = $muzzlePoint/muzzleFlashSprite
 onready var animPLayer = $animPlayer
-onready var gunSoundStream = $gunSoundStream
+onready var gunSoundStream = $muzzlePoint/gunSoundStream
 onready var levelRoot = find_parent("navigation2D")
 
 func _ready():
