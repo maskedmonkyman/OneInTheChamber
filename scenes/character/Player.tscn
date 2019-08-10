@@ -79,7 +79,8 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 
 [node name="gunPickupArea" type="Area2D" parent="."]
-collision_mask = 0
+collision_layer = 0
+collision_mask = 8
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="gunPickupArea"]
 shape = SubResource( 4 )

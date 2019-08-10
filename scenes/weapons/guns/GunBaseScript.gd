@@ -21,8 +21,14 @@ func fire(spawnAngle : float): #makes a new bullet instance, moves/rotates it an
 	var spawnedBullet = bullet.instance()
 	spawnedBullet.global_position = muzzlePoint.global_position
 	spawnedBullet.rotation = spawnAngle
+	setBulletCollisionLayer(spawnedBullet)
 	levelRoot.add_child(spawnedBullet)
 	muzzleFlash()
 
 func muzzleFlash():
 	pass
+
+func setBulletCollisionLayer(spawnedBullet : BulletBase):
+	pass
+	#if ()
+	#set_collision_mask_bit(2, true)

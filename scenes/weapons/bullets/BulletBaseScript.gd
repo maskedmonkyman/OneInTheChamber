@@ -8,11 +8,8 @@ var gunOwner
 onready var velocity : Vector2 = Vector2(bulletSpeed, 0).rotated(rotation)
 
 func _ready():
-	if is_in_group("Player"):
-		set_collision_mask_bit(1, true)
-	elif is_in_group("Enemy"):
-		set_collision_mask_bit(2, true)
-		
+	pass
+
 func _physics_process(delta): #will move bullet and check for collisions
 	var collision = move_and_collide(velocity * delta)
 

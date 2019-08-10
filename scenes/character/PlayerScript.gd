@@ -58,9 +58,9 @@ func _physics_process(delta): #handles movement and animation
 
 func handleAnim(): #sets anim, and rotates sprite(s)
 	#walk/idle
-	if(moveDir.length() > 0):
+	if(moveDir.length() > 0): # walk
 		playWalkAnim()
-	else:
+	else: #idle
 		playIdleAnim()
 	
 	#look direction

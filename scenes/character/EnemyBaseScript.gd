@@ -1,10 +1,8 @@
 extends KinematicBody2D
 
-#how close an agent can get to a path point in order to
-#consider it reached
+#how close an agent can get to a path point in order to consider it reached
 const distToPointTolerance = 2
-#how short an agent is alowed to travel to start
-#considering this path a failure
+#how short an agent is alowed to travel to start considering this path a failure
 const pathFailTolerance = 0.05
 const agroRepathDist = 50
 # how long an agent must wait to consider this path failed
@@ -136,27 +134,22 @@ func _physics_process(delta):
 		#	LookRight()
 		#shoot
 		if (playerDist() < aimRange):
-			print("shoot")
 			aimTarget = player.global_position
 			setAimLine()
 			fireTimer.start()
 		#repath player
-		elif (playerDistToPoint(path[path.size()-1]) > agroRepathDist): #fix this as it will cause a -1 index error
-			print("repath")
+		elif (path.size() > 0 and playerDistToPoint(path[path.size()-1]) > agroRepathDist): #fix this as it will cause a -1 index error
 			findPathToPoint(player.global_position)
 			followPath(delta)
 		#deAgro
 		elif(playerDist() > deAgroRadius):
-			print("deagro")
 			currentBehavior = State.Patrol
 			findPathInPatrolRadius()
 		#follow path
 		elif (path.size() > 0):
-			print("follow path")
 			followPath(delta)
 		#find new path if we some how ran out of points
 		else:
-			"repath else"
 			findPathToPoint(player.global_position)
 
 func setAimLine():
