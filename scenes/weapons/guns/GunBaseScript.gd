@@ -35,9 +35,10 @@ func drawLaser():
 	pass
 #todo implement ^
 
-func setBulletCollisionLayer(spawnedBullet : BulletBase):
-	if (gunOwner is Player):
-		spawnedBullet.set_collision_mask_bit(3, true)
+func setBulletCollisionLayer(spawnedBullet : BulletBase): #reeee static typing reeeeee
+	pass
+	#if (gunOwner is Player):
+		#spawnedBullet.set_collision_mask_bit(3, true)
 	#todo make enemys static typed
 	#elif (gunOwner is Enemey):
 	#	spawnedBullet.set_collision_mask_bit(2, true)
