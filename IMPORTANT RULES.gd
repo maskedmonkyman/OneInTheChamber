@@ -58,12 +58,12 @@
 #		-consider reworking enemy collision (do they need wall collision?)
 #		-implement flocking/steering? 
 #		
-#	2:start writting out levelManagerScript
+#	2:start writing out levelManagerScript
 #		-implement pausing
 #		-implement game state stuff:
-#			-the level manager should query it's children for number of eneimes to see if we should move
+#			-the level manager should query it's children for number of enemies to see if we should move
 #			 to the next level or not
-#			-the level manager should query it's children for the number of abilable guns on the level
+#			-the level manager should query it's children for the number of available guns on the level
 #			 (if a guns gunOwner is null and player fired is false then it should be considered avilable)
 #			-handle loosing and level transitions
 #	3:sounds in various places
@@ -71,8 +71,8 @@
 #	5:gun lasers (ray trace)
 #	6:player anim stuff
 #		-throw gun
-#		-keirans angle thing?
+#		-Keirans angle thing?
 #	7:bullet bounces?
-#	8:bullet trails (partile effects?)
+#	8:bullet trails (particle effects?)
 #
 #	add more stuff if you think of it
