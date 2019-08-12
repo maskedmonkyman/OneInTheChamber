@@ -27,8 +27,17 @@ func fire(spawnAngle : float): #makes a new bullet instance, moves/rotates it an
 
 func muzzleFlash():
 	pass
+#todo implement ^
+
+#todo sound
+
+func drawLaser():
+	pass
+#todo implement ^
 
 func setBulletCollisionLayer(spawnedBullet : BulletBase):
-	pass
-	#if ()
-	#set_collision_mask_bit(2, true)
+	if (gunOwner is Player):
+		spawnedBullet.set_collision_mask_bit(3, true)
+	#todo make enemys static typed
+	#elif (gunOwner is Enemey):
+	#	spawnedBullet.set_collision_mask_bit(2, true)

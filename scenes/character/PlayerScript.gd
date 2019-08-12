@@ -5,7 +5,7 @@ enum AnimState {Idle, Walk}
 
 export var moveSpeed = 10_000;
 export var health = 3
-export var debugInfo : bool = false
+export var debugInfo : bool = false #just shows fps right now
 export var spawnGun = preload("res://scenes/weapons/guns/Pistol.tscn") #the weapon the player will spawn with
 
 var animState = AnimState.Idle
@@ -91,7 +91,6 @@ func playWalkAnim():
 		animState = AnimState.Walk
 		animPlayer.play("Walk")
 
-#todo fancy gun drop animation
 func shootAndDropGun():
 	heldGun.fire(armPivot.rotation) #shoot
 	#do cleanup and reparent
@@ -102,17 +101,18 @@ func shootAndDropGun():
 	heldGun.global_position = global_position
 	heldGun.scale.y = abs(scale.y)
 	heldGun = null
+#todo fancy gun drop animation
 
 func pickUpGun(gun : GunBase) -> bool: #tries to pick up gun and retruns the result of the pickup
-	if (!gun.playerFired and !gun.gunOwner):
+	if (!gun.playerFired and !gun.gunOwner): # check to see if gun is on ground and not fired
 		if (gun.get_parent()):
-			gun.get_parent().remove_child(gun)
+			gun.get_parent().remove_child(gun) #if the gun has a perent remove it
 		heldGun = gun
-		heldGun.gunOwner = self
+		heldGun.gunOwner = self #give the gun to us
 		handLocation.add_child(heldGun)
 		heldGun.global_position = handLocation.global_position
 		return true
-	else:
+	else: #if the gun was fired or belongs to someone else return false
 		return false
 
 func bulletHit():

@@ -50,3 +50,29 @@
 #	ang = angle : number (should be in degrees)
 #	rot = rotation : number (should be in radians)
 #	dist = distance : number
+#
+#------------------------ ToDo and ideas/thoughts -----------------------
+#ToDo: (in sort of order of importance)
+#	1:burn large parts of the enemy script with fire
+#		-make enemies use some sort of state machine for behaviors
+#		-consider reworking enemy collision (do they need wall collision?)
+#		-implement flocking/steering? 
+#		
+#	2:start writting out levelManagerScript
+#		-implement pausing
+#		-implement game state stuff:
+#			-the level manager should query it's children for number of eneimes to see if we should move
+#			 to the next level or not
+#			-the level manager should query it's children for the number of abilable guns on the level
+#			 (if a guns gunOwner is null and player fired is false then it should be considered avilable)
+#			-handle loosing and level transitions
+#	3:sounds in various places
+#	4:profit?
+#	5:gun lasers (ray trace)
+#	6:player anim stuff
+#		-throw gun
+#		-keirans angle thing?
+#	7:bullet bounces?
+#	8:bullet trails (partile effects?)
+#
+#	add more stuff if you think of it

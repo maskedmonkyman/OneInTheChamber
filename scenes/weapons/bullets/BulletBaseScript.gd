@@ -1,6 +1,11 @@
 extends KinematicBody2D
 class_name BulletBase
 
+#todo:
+#bounces?
+#particles?
+#wall hit sounds?
+
 export var numberOfPenatrations = 1;
 export var bulletSpeed = 750;
 
@@ -18,9 +23,8 @@ func _physics_process(delta): #will move bullet and check for collisions
 
 func hitSomething(collision : KinematicCollision2D): #handle bullet hits and destruction
 	numberOfPenatrations -= 1
-	
 	var otherBodie = collision.collider
-	if (otherBodie.has_method("receiveHit")): #see if what we hit has a hit method
-		otherBodie.receiveHit()
+	if (otherBodie.has_method("bulletHit")): #see if what we hit has a hit method
+		otherBodie.bulletHit()
 	if(numberOfPenatrations <= 0): #destroy this bullet if it has no more penatrations
 		queue_free()
