@@ -26,6 +26,8 @@ func _ready():
 		heldGun = spawnGun.instance()
 		pickUpGun(heldGun)
 	playIdleAnim()
+	z_index += 10 #Puts player in front so that all guns on the ground and other objects will be behind us
+	print("Player Z:",z_index);
 
 func _process(delta): #handles input
 	moveDir = Vector2(0,0) #handle updating move direction
@@ -96,17 +98,20 @@ func shootAndDropGun():
 	#do cleanup and reparent
 	heldGun.playerFired = true
 	heldGun.gunOwner = null
+	var globalRot = heldGun.global_rotation # Saving these so we can get them back after creating the new instance
+	var globalPos = heldGun.global_position 
 	handLocation.remove_child(heldGun)
 	levelRoot.add_child(heldGun)
-	heldGun.global_position = global_position
-	heldGun.scale.y = abs(scale.y)
+	heldGun.global_position = globalPos
+	heldGun.global_rotation = globalRot
+	#To do: Fix gun being aimed the wrong way after dropping if fired to the left
 	heldGun = null
 #todo fancy gun drop animation
 
-func pickUpGun(gun : GunBase) -> bool: #tries to pick up gun and retruns the result of the pickup
+func pickUpGun(gun : GunBase) -> bool: #tries to pick up gun and returns the result of the pickup
 	if (!gun.playerFired and !gun.gunOwner): # check to see if gun is on ground and not fired
 		if (gun.get_parent()):
-			gun.get_parent().remove_child(gun) #if the gun has a perent remove it
+			gun.get_parent().remove_child(gun) #if the gun has a parent remove it
 		heldGun = gun
 		heldGun.gunOwner = self #give the gun to us
 		handLocation.add_child(heldGun)

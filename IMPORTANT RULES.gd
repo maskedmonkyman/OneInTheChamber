@@ -1,16 +1,16 @@
 #-------------------------------- Editor --------------------------------
 #tile base size is 32x32 pixels
 #
-#all scene nodes should be camelcase, this is to avoid name conflicts with node types in scripts
+#all scene nodes should be camelCase, this is to avoid name conflicts with node types in scripts
 #
 #collision layers:
 #	layer 1: level
 #	layer 2: player
-#	layer 3: enemys
+#	layer 3: enemies
 #	layer 4: guns
 #
 #------------------------------- Hierarchy ------------------------------
-#all character bodies must have a kinematic body as thier base node
+#all character bodies must have a kinematic body as their base node
 #
 #all levels must inherit from BaseLevel
 #	-the top of base level's scene tree (and therfore the top level parent for anything in that level) 
@@ -28,14 +28,14 @@
 #-------------------------------- Script --------------------------------
 #non constant variables and methods are camelCase
 #
-#constants are pascalcase
+#constants are PascalCase
 #
 #if a function is more than 30 lines check to see if it can be broken down into smaller functions
 #
-#please atempt to give meaningful variable names and comment out code
+#please attempt to give meaningful variable names and comment out code
 #
-#where posible try to give a one line comment after functions, if statments or variable
-#modification/deleration
+#where possible try to give a one line comment after functions, if statements, or 
+# variable modification/declaration
 #example:
 #	var meaningfulVarName : type(optional) = someValue #comment explaining what this var does
 #	func meaningfulFuncName(): # comment explaining what this function does
@@ -64,9 +64,10 @@
 #			-the level manager should query it's children for number of enemies to see if we should move
 #			 to the next level or not
 #			-the level manager should query it's children for the number of available guns on the level
-#			 (if a guns gunOwner is null and player fired is false then it should be considered avilable)
+#			 (if a guns gunOwner is null and player fired is false then it should be considered available)
 #			-handle loosing and level transitions
 #	3:sounds in various places
+#       - Note: Gun sounds added 
 #	4:profit?
 #	5:gun lasers (ray trace)
 #	6:player anim stuff

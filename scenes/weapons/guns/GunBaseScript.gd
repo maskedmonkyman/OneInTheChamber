@@ -24,12 +24,11 @@ func fire(spawnAngle : float): #makes a new bullet instance, moves/rotates it an
 	setBulletCollisionLayer(spawnedBullet)
 	levelRoot.add_child(spawnedBullet)
 	muzzleFlash()
+	gunSoundStream.play(0)
 
 func muzzleFlash():
 	pass
 #todo implement ^
-
-#todo sound
 
 func drawLaser():
 	pass
